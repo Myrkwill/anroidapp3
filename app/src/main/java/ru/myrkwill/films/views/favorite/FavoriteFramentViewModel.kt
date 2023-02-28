@@ -1,4 +1,6 @@
 package ru.myrkwill.films.views.favorite
 
-class FavoriteFramentViewModel {
+import androidx.lifecycle.ViewModel
+
+class FavoriteFramentViewModel: ViewModel() {
 }
