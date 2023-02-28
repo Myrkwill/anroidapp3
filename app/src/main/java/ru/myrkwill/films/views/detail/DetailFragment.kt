@@ -5,20 +5,32 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ru.myrkwill.films.R
+import androidx.fragment.app.activityViewModels
+import ru.myrkwill.films.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
+
+    private lateinit var binding: FragmentDetailBinding
+    private val viewModel: DetailFragmentViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+    ): View {
+        binding = FragmentDetailBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init()
+    }
+
+    private fun init() = with(binding) {
+
     }
 
     companion object {
-        @JvmStatic
-        fun newInstance() = DetailFragment()
+        @JvmStatic fun newInstance() = DetailFragment()
     }
 }
