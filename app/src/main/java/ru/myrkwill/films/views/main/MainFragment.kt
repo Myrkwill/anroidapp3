@@ -30,8 +30,14 @@ class MainFragment : Fragment() {
 
     private fun init() = with(binding) {
         rvMain.layoutManager = LinearLayoutManager(activity)
+        viewModel.getMovies()
         adapter = MainAdapter()
-//        rvMain.adapter = adapter
+        rvMain.adapter = adapter
+        viewModel.movies.observe(viewLifecycleOwner) { list ->
+            list.body()?.let {
+                adapter.setMovies(it.films)
+            }
+        }
     }
 
     companion object {

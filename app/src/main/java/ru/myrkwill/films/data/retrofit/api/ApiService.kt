@@ -4,6 +4,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import ru.myrkwill.films.API_KEY
+import ru.myrkwill.films.models.Movies
 
 
 interface ApiService {

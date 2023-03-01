@@ -1,5 +1,6 @@
 package ru.myrkwill.films.views.main
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,11 @@ import ru.myrkwill.films.models.Movie
 class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     private var list = emptyList<Movie>()
+
+    fun setMovies(list: List<Movie>) {
+        this.list = list
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)
@@ -32,10 +38,14 @@ class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
         fun bind(item: Movie) = with(binding) {
             tvItemTitle.text = item.nameRu
             tvItemDate.text = item.year
+
+            val url = "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/8ea16e5e-cbcb-41fa-90df-e1e7345caf4d/x1000"
+
             Picasso.get()
-                .load(item.posterUrlPreview)
-                .centerCrop()
+                .load(url)
+                .resize(150, 200)
                 .placeholder(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.ic_launcher_background)
                 .into(imageItem)
         }
     }
