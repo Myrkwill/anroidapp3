@@ -27,13 +27,13 @@ class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     }
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val binding = ItemLayoutBinding.bind(view)
+        private val binding = ItemLayoutBinding.bind(view)
 
         fun bind(item: Movie) = with(binding) {
-            tvItemTitle.text = item.title
-            tvItemDate.text = item.releaseDate
+            tvItemTitle.text = item.nameRu
+            tvItemDate.text = item.year
             Picasso.get()
-                .load(item.posterPath)
+                .load(item.posterUrlPreview)
                 .centerCrop()
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .into(imageItem)

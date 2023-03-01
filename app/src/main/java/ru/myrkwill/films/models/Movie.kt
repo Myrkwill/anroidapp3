@@ -1,18 +1,15 @@
 package ru.myrkwill.films.models
 
 data class Movie(
-    val id: Int,
-    val adult: Boolean,
-    val backdropPath: String,
-    val genreIds: List<Int>,
-    val originalLanguage: String,
-    val originalTitle: String,
-    val overview: String,
-    val popularity: Double,
-    val posterPath: String,
-    val releaseDate: String,
-    val title: String,
-    val video: Boolean,
-    val voteAverage: Double,
-    val voteCount: Int
+    val countries: List<Country>,
+    val filmId: Int,
+    val filmLength: String,
+    val genres: List<Genre>,
+    val nameEn: String,
+    val nameRu: String,
+    val posterUrl: String,
+    val posterUrlPreview: String,
+    val rating: String,
+    val ratingVoteCount: Int,
+    val year: String
 )
