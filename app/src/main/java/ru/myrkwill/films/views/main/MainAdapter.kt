@@ -32,6 +32,17 @@ class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
         return list.size
     }
 
+    override fun onViewAttachedToWindow(holder: ViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        holder.itemView.setOnClickListener {
+            MainFragment.clickMovie(list[holder.adapterPosition])
+        }
+    }
+
+    override fun onViewDetachedFromWindow(holder: ViewHolder) {
+        holder.itemView.setOnClickListener(null)
+    }
+
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private val binding = ItemLayoutBinding.bind(view)
 

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.myrkwill.films.MAIN
 import ru.myrkwill.films.R
 import ru.myrkwill.films.databinding.FragmentMainBinding
+import ru.myrkwill.films.models.Movie
 
 class MainFragment : Fragment() {
 
@@ -61,5 +62,11 @@ class MainFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance() = MainFragment()
+
+        fun clickMovie(movie: Movie) {
+            val bundle = Bundle()
+            bundle.putSerializable("movie", movie)
+            MAIN.navController.navigate(R.id.action_mainFragment_to_detailFragment, bundle)
+        }
     }
 }

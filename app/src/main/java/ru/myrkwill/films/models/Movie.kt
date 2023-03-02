@@ -1,15 +1,17 @@
 package ru.myrkwill.films.models
 
+import java.io.Serializable
+
 data class Movie(
     val countries: List<Country>,
     val filmId: Int,
     val filmLength: String,
     val genres: List<Genre>,
-    val nameEn: String,
-    val nameRu: String,
+    val nameEn: String?,
+    val nameRu: String?,
     var posterUrl: String,
     var posterUrlPreview: String,
     val rating: String,
     val ratingVoteCount: Int,
     val year: String
-)
+): Serializable
