@@ -9,7 +9,14 @@ class RetrofitRepository {
 
     suspend fun getMovies(): Response<Movies> {
         val movies = RetrofitInstance.api.getPopularMovie()
-        Log.i("Tag", movies.body()?.films.toString())
+        movies.body()?.let {
+            it.films.forEach { movie ->
+                val imageData = RetrofitInstance.api.getImageUrls(movie.filmId)
+                movie.posterUrl = imageData.body()?.items?.first()?.imageUrl ?: ""
+                movie.posterUrlPreview = imageData.body()?.items?.first()?.previewUrl ?: ""
+            }
+        }
+
         return movies
     }
 }

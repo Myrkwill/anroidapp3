@@ -39,11 +39,9 @@ class MainAdapter: RecyclerView.Adapter<MainAdapter.ViewHolder>() {
             tvItemTitle.text = item.nameRu
             tvItemDate.text = item.year
 
-            val url = "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/8ea16e5e-cbcb-41fa-90df-e1e7345caf4d/x1000"
-
             Picasso.get()
-                .load(url)
-                .resize(150, 200)
+                .load(item.posterUrl)
+                .resize(300, 300)
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .error(R.drawable.ic_launcher_background)
                 .into(imageItem)

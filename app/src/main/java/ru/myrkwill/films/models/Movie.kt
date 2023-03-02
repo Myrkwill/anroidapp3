@@ -7,8 +7,8 @@ data class Movie(
     val genres: List<Genre>,
     val nameEn: String,
     val nameRu: String,
-    val posterUrl: String,
-    val posterUrlPreview: String,
+    var posterUrl: String,
+    var posterUrlPreview: String,
     val rating: String,
     val ratingVoteCount: Int,
     val year: String
