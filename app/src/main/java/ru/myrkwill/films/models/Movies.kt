@@ -1,6 +1,6 @@
 package ru.myrkwill.films.models
 
 data class Movies(
-    val pagesCount: Int,
-    val films: List<Movie>
+    var pagesCount: Int = 0,
+    var films: List<Movie> = emptyList()
 )

@@ -17,6 +17,7 @@ class DetailFragment : Fragment() {
     private val viewModel: DetailFragmentViewModel by activityViewModels()
 
     private var currentMovie: Movie? = null
+    private var isFavorite = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,9 +44,15 @@ class DetailFragment : Fragment() {
             tvTitle.text = it.nameRu
             tvDate.text = it.year
             var description = "Rating: ${it.rating}"
-            description += "\nShow in ${it.countries.joinToString { it.country} }"
-            description += "\nGenres: ${it.genres.joinToString { it.genre } }"
+            description += "\nShow in ${it.countries }"
+            description += "\nGenres: ${it.genres }"
             tvDescription.text = description
+        }
+
+        imgDetailFavorite.setOnClickListener {
+            isFavorite = !isFavorite
+            val image = if (isFavorite) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
+            imgDetailFavorite.setImageResource(image)
         }
     }
 
