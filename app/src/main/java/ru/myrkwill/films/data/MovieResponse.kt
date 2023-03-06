@@ -1,7 +1,7 @@
 package ru.myrkwill.films.data
 
 data class MovieResponse(
-    val Response: String,
-    val Search: List<Search>,
+    val response: String,
+    val search: List<Movie>,
     val totalResults: String
 )
