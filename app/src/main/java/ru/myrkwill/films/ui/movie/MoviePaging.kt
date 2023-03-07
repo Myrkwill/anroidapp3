@@ -22,7 +22,7 @@ class MoviePaging(
         val page = params.key ?: 1
 
         return try {
-            val data = movieInterface.getAllMovies(search, page, Constants.API_KEY)
+            val data = movieInterface.getAllMovies(search, page)
             Log.d("TAG", "load: ${data.body()}")
             LoadResult.Page(
                 data = data.body()?.search!!,
