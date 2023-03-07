@@ -13,4 +13,9 @@ interface MovieInterface {
         @Query("s") search: String,
         @Query("page") page: Int
     ): Response<MovieResponse>
+
+    @GET("/")
+    suspend fun getMovieDetails(
+        @Query("i") imdbId: String
+    ): Response<MovieDetails>
 }
