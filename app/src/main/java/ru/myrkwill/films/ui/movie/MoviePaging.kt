@@ -1,5 +1,6 @@
 package ru.myrkwill.films.ui.movie
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import ru.myrkwill.films.data.Movie
@@ -22,12 +23,14 @@ class MoviePaging(
 
         return try {
             val data = movieInterface.getAllMovies(search, page, Constants.API_KEY)
+            Log.d("TAG", "load: ${data.body()}")
             LoadResult.Page(
                 data = data.body()?.search!!,
                 prevKey = if (page == 1) null else page - 1,
                 nextKey = if (data.body()?.search?.isEmpty()!!) null else page + 1
             )
         } catch (e: java.lang.Exception) {
+            Log.d("TAG", "load: ${e.message}")
             LoadResult.Error(e)
         }
     }
