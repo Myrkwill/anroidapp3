@@ -1,7 +1,9 @@
 package ru.myrkwill.films.data
 
+import com.google.gson.annotations.SerializedName
+
 data class MovieResponse(
-    val response: String,
-    val search: List<Movie>,
+    @SerializedName("Response") val response: String,
+    @SerializedName("Search") val search: List<Movie>,
     val totalResults: String
 )
