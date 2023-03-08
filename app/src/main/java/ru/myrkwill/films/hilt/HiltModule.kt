@@ -9,12 +9,18 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.myrkwill.films.remote.MovieInterface
+import ru.myrkwill.films.ui.details.MovieDetailsRepository
 import ru.myrkwill.films.utils.Constants
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object HiltModule {
+
+    @Provides
+    fun provideRepository(movieInterface: MovieInterface): MovieDetailsRepository {
+        return MovieDetailsRepository(movieInterface)
+    }
 
     @Provides
     @Singleton

@@ -11,6 +11,8 @@ import ru.myrkwill.films.databinding.ViewHolderMovieBinding
 
 class MoviePagingAdapter : PagingDataAdapter<Movie, MoviePagingAdapter.ViewHolder>(DIFF_UTIL) {
 
+    private var onClick: ((String) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var binding = ViewHolderMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
@@ -20,7 +22,11 @@ class MoviePagingAdapter : PagingDataAdapter<Movie, MoviePagingAdapter.ViewHolde
         holder.bind(getItem(position)!!)
     }
 
-    class ViewHolder(private val binding: ViewHolderMovieBinding): RecyclerView.ViewHolder(binding.root) {
+    fun onMovieClick(listener: (String) -> Unit) {
+        onClick = listener
+    }
+
+    inner class ViewHolder(private val binding: ViewHolderMovieBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(movie: Movie) = with(binding) {
             movieTitle.text = movie.title
@@ -29,6 +35,9 @@ class MoviePagingAdapter : PagingDataAdapter<Movie, MoviePagingAdapter.ViewHolde
                 .load(movie.poster)
                 .centerCrop()
                 .into(movieImage)
+            root.setOnClickListener {
+                onClick?.let { it(movie.imdbID) }
+            }
         }
 
     }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ru.myrkwill.films.databinding.FragmentMovieBinding
@@ -44,6 +45,11 @@ class MovieFragment : Fragment() {
                 return false
             }
         })
+
+        moviePagingAdapter.onMovieClick {
+            val action = MovieFragmentDirections.actionMovieFragmentToDetailsFragment(it)
+            findNavController().navigate(action)
+        }
 
         viewModel.list.observe(viewLifecycleOwner) {
             moviePagingAdapter.submitData(lifecycle, it)
